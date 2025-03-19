@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuvaraj R - Portfolio</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 1rem;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1rem auto;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .contact-info a:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-links {
+            list-style: none;
+            display: flex;
+            padding: 0;
+        }
+        
+        .nav-links li a {
+            display: block;
+            padding: 1.2rem 1.5rem;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s;
+        }
+        
+        .nav-links li a:hover::after {
+            width: 100%;
+        }
+        
+        .active::after {
+            width: 100% !important;
+        }
+        
+        /* Main Content Styles */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-title {
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        .about-text p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-category {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-category h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #1a2a6c;
+        }
+        
+        .skills-list {
+            list-style: none;
+        }
+        
+        .skills-list li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .skills-list li::before {
+            content: '▹';
+            color: #b21f1f;
+            margin-right: 0.5rem;
+        }
+        
+        /* Programming Skills */
+        .prog-skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .prog-skill {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .prog-skill h4 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background-color: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+            border-radius: 3px;
+            transition: width 1s ease-in-out;
+        }
+        
+        /* Education Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background: linear-gradient(180deg, #1a2a6c, #b21f1f);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 1.5rem;
+            background-color: white;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            border-left: 3px solid #1a2a6c;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            border-right: 3px solid #b21f1f;
+        }
+        
+        .timeline-content h3 {
+            margin-bottom: 0.5rem;
+            color: #1a2a6c;
+        }
+        
+        .timeline-content .date {
+            color: #b21f1f;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid #b21f1f;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+        
+        /* Interests Section */
+        .interests-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .interest-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .interest-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .interest-card h3 {
+            color: #1a2a6c;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #f5f5f5;
+            padding-bottom: 0.5rem;
+        }
+        
+        /* Activities Section */
+        .activities-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .activity-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .activity-card h3 {
+            color: #1a2a6c;
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a2a6c;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            margin-top: 1.5rem;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd)::after,
+            .timeline-item:nth-child(even)::after {
+                left: 18px;
+            }
+        }
+        
+        @media (max-width: 500px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links li a {
+                padding: 1rem 0.8rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="profile-img">YR</div>
+            <h1>Yuvaraj R</h1>
+            <p class="tagline">B.Sc Artificial Intelligence and Machine Learning</p>
+            <div class="contact-info">
+                <a href="tel:8939048435"><i class="fas fa-phone"></i> 8939048435</a>
+                <a href="mailto:yuvayuva103@gmail.com"><i class="fas fa-envelope"></i> yuvayuva103@gmail.com</a>
+                <a href="#"><i class="fas fa-map-marker-alt"></i> Tiruppur</a>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#about" class="active">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#interests">Interests</a></li>
+                <li><a href="#activities">Activities</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <section id="about" class="section">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I am a pursuing graduate with a strong foundation and a passion for applying my technical skills in real-world scenarios. My academic experience includes hands-on projects, where I developed expertise in the areas of Python, Java, Data Structures, and Web Development.</p>
+                    <p>I have excellent problem-solving abilities and thrive in collaborative environments. I am excited about starting my career and making a positive impact in the tech industry.</p>
+                    <p>I'm fluent in English and Tamil, allowing me to communicate effectively in diverse environments.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills" class="section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="prog-skills">
+                        <div class="prog-skill">
+                            <h4>Java</h4>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="prog-skill">
+                            <h4>Python</h4>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="prog-skill">
+                            <h4>C++</h4>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="prog-skill">
+                            <h4>MySQL</h4>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Web Development</h3>
+                    <ul class="skills-list">
+                        <li>HTML5 & CSS3</li>
+                        <li>JavaScript</li>
+                        <li>React</li>
+                        <li>Responsive Design</li>
+                        <li>Frontend Optimization</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Data Structures & Algorithms</h3>
+                    <ul class="skills-list">
+                        <li>Array & String Manipulation</li>
+                        <li>Linked Lists</li>
+                        <li>Trees & Graphs</li>
+                        <li>Sorting Algorithms</li>
+                        <li>Dynamic Programming</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Software Development</h3>
+                    <ul class="skills-list">
+                        <li>Object-Oriented Programming</li>
+                        <li>System Design</li>
+                        <li>Version Control (Git)</li>
+                        <li>Performance Optimization</li>
+                        <li>Problem-Solving</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="education" class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>B.Sc Artificial Intelligence and Machine Learning</h3>
+                        <p class="date">KPR College of Arts Science and Research</p>
+                        <p>Focused on cutting-edge AI/ML technologies, algorithms, and their real-world applications. Engaged in hands-on projects that enhanced my technical skills.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Higher Secondary Education (HSC)</h3>
+                        <p class="date">Velavan MHSS</p>
+                        <p>Percentage: 77%</p>
+                        <p>Built a strong foundation in sciences and mathematics that prepared me for higher education in technology.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="interests" class="section">
+            <h2 class="section-title">Areas of Interest</h2>
+            <div class="interests-container">
+                <div class="interest-card">
+                    <h3>Web Development</h3>
+                    <p>I am enthusiastic about creating dynamic, user-friendly websites and applications. With experience in front-end technologies like HTML, CSS, JavaScript, and frameworks such as React, I aim to build responsive and visually appealing websites while ensuring a smooth user experience and performance optimization.</p>
+                </div>
+                <div class="interest-card">
+                    <h3>Software Development</h3>
+                    <p>Passionate about software development, with a strong interest in designing and building scalable, high-performance applications. I enjoy exploring new technologies, optimizing system efficiency, and continuously improving user experiences through innovative solutions in both web and mobile development.</p>
+                </div>
+                <div class="interest-card">
+                    <h3>Data Structures and Algorithms</h3>
+                    <p>I have a strong interest in understanding and optimizing algorithms and data structures. This area excites me as it provides solutions to complex problems and enhances the efficiency of software, which is critical in building scalable and high-performance applications.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="activities" class="section">
+            <h2 class="section-title">Extracurricular Activities</h2>
+            <div class="activities-container">
+                <div class="activity-card">
+                    <h3>Online Coding Competitions</h3>
+                    <p>Engaged in algorithmic problem-solving and coding challenges, enhancing problem-solving and programming skills through regular participation in competitive coding platforms.</p>
+                </div>
+                <div class="activity-card">
+                    <h3>Hackathon Participation</h3>
+                    <p>I've participated in multiple hackathons, developing solutions under tight deadlines. My projects from these hackathons are uploaded to GitHub, showcasing my ability to work efficiently in high-pressure situations.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="section">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                        <input type="text" placeholder="Your Name" style="padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem;">
+                        <input type="email" placeholder="Your Email" style="padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem;">
+                    </div>
+                    <input type="text" placeholder="Subject" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 1rem; font-size: 1rem;">
+                    <textarea placeholder="Your Message" rows="5" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 1rem; font-size: 1rem; resize: vertical;"></textarea>
+                    <button type="submit" style="background: linear-gradient(90deg, #1a2a6c, #b21f1f); color: white; border: none; padding: 0.8rem 2rem; border-radius: 5px; font-size: 1rem; cursor: pointer; transition: transform 0.3s;">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <h3>Yuvaraj R</h3>
+            <p>B.Sc Artificial Intelligence and Machine Learning Graduate</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:yuvayuva103@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="copyright">&copy; 2025 Yuvaraj R. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Update active link
+                document.querySelectorAll('nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Smooth scroll
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                window.scrollTo({
+                    top: targetSection.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Intersection Observer for section animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Update navigation active state
+                    const id = entry.target.getAttribute('id');
+                    document.querySelectorAll('nav a').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message. I will get back to you soon!');
+            this.reset();
+        });
+        
+        // Initialize progress bars with animation
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.progress').forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
